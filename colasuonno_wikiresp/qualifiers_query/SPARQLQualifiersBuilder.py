@@ -22,28 +22,23 @@ class SPARQLBuilder:
             self.qs += "?" + label + " "
         return self
 
-    def where_struct(self, conditions, quantity_labels):
+    def where_struct(self, assignments, optionals_assignments):
         """
         Assuming conditions and optionals are a dict
         WARNING: in this section we are only focussing ?id Label which is involved
-        :param quantity_labels:
+        :param optionals_assignments:
+        :param assignments:
         :param self:
-        :param conditions: dict
         :return: self
         """
         self.qw = self.query_where
-        cond = "?id "
-        for key in conditions:
-            cond += key + ":" + conditions[key] + "/"
-        cond = cond[:-1]
-        cond += " [ "
-        for i in range(0, len(quantity_labels)):
-            key = list(quantity_labels.keys())[i]
-            if i == len(quantity_labels)-1:
-                cond += key + " " + quantity_labels[key] + "].\n"
-            else:
-                cond += key + " " + quantity_labels[key] + "; \n"
-        self.qw += cond + " \n"
+        for key in assignments:
+            self.qw += key + " " + assignments[key] + ". \n"
+        self.qw += "OPTIONAL { \n"
+        for key in optionals_assignments:
+            self.qw += key + " " + optionals_assignments[key] + ". \n"
+        self.qw += "}"
+
         return self
 
     def build(self, result_lang, last="", limit=None):

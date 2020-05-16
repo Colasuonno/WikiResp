@@ -47,10 +47,12 @@ class SPARQLBuilder:
         self.qw += "} "
         return self
 
-    def build(self, result_lang, limit=None):
+    def build(self, result_lang, last="", limit=None):
         q = self.qs + self.qw + """SERVICE wikibase:label { bd:serviceParam wikibase:language 
         \"""" + result_lang + """\".}""" \
                + """?id ?label \"""" + self.name + """\"@en. }"""
         if limit is not None:
             q += " LIMIT " + str(limit)
+        if last != "":
+            q += " " + str(last)
         return q

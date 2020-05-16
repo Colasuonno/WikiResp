@@ -25,13 +25,22 @@ class DirectWikiQuery:
         self.query_txt = query
         return self.sparql.query().convert()["results"]["bindings"]
 
+    def init(self, elements, limit=None):
+        self.builder.select_labels(elements["labels"])
+        self.builder.where_struct(elements["conditions"], elements["assignments"], elements["optional_conditions"],
+                                  elements["optional_assignments"])
+        last = ""
+        if len(elements) > 5:
+            last = elements[3]
+        return self.build(limit, last)
+
     def lazy_init(self, labels, conditions, vars_assuming, optionals_conditions, optionals_vars_assuming, limit=None):
         self.builder.select_labels(labels)
         self.builder.where_struct(conditions, vars_assuming, optionals_conditions, optionals_vars_assuming)
         return self.build(limit)
 
-    def build(self, limit=None):
-        self.builder.last_result = self.query(self.builder.build(self.result_lang, limit))
+    def build(self, limit=None, last=""):
+        self.builder.last_result = self.query(self.builder.build(self.result_lang, last, limit))
         return self.builder.last_result
 
     def pretty_print(self):

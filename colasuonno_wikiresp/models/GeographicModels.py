@@ -8,6 +8,7 @@ def flag_image():
 
 def citizens_count():
     return [
-        ["citizens_count"],
-        {}, {}, {}, {}
+        ["citizens_count", "year"],
+        {"p"}, {"P1082": "?citizens_count"}, {}, {"P585": "?year"},
+        "ORDER BY DESC(?year)"
     ]

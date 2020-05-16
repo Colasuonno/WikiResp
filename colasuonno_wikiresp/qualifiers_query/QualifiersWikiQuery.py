@@ -1,6 +1,6 @@
 import sys
 from SPARQLWrapper import SPARQLWrapper, JSON
-from .SPARQLStatementBuilder import SPARQLBuilder
+from .SPARQLQualifiersBuilder import SPARQLBuilder
 
 endpoint_url = "https://query.wikidata.org/sparql"
 

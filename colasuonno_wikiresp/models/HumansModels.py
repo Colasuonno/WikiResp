@@ -1,10 +1,14 @@
 
 
 def birth_death():
-    return [
-        ["birth", "death"],
-        {"P31": "Q5"}, {"P19": "?birth"}, {}, {"P20": "?death"}
-    ]
+    return {
+        "labels": ["birth", "death"],
+        "conditions":  {"P31": "Q5"},
+        "assignments": {"P19": "?birth"},
+        "optional_conditions": {},
+        "optional_assignments": {"P20": "?death"},
+        "type": "DirectWikiQuery"
+    }
 
 
 def languages_spoken():
@@ -14,7 +18,7 @@ def languages_spoken():
     ]
 
 
-def father_mather():
+def father_mother():
     return [
         ["father", "mother"],
         {"P31": "Q5"}, {}, {}, {"P22": "?father", "P25": "?mother"}
