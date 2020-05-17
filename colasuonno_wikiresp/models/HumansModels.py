@@ -1,12 +1,28 @@
 
-
 def birth_death():
     return {
         "labels": ["birth", "death"],
-        "conditions":  {"P31": "Q5"},
-        "assignments": {"P19": "?birth"},
-        "optional_conditions": {},
-        "optional_assignments": {"P20": "?death"},
+        "conditions":  {
+            "0": {
+                "startVar": "?id",
+                "conditions": "p:P1082",
+                "endVar": "?prop"
+            },
+            "1": {
+                "startVar": "?id",
+                "conditions": "wdt:P1082",
+                "endVar": "?citizens_count"
+            }
+
+        },
+        "optional_conditions": {
+            "0": {
+                "startVar": "?prop",
+                "conditions": "pq:P585",
+                "endVar": "?year"
+            }
+        },
+        "last": "ORDER BY DESC(?year)",
         "type": "DirectWikiQuery"
     }
 
@@ -23,5 +39,3 @@ def father_mother():
         ["father", "mother"],
         {"P31": "Q5"}, {}, {}, {"P22": "?father", "P25": "?mother"}
     ]
-
-

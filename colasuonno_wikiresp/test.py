@@ -11,10 +11,10 @@ from queries.WikiQuery import init_query
 #query.lazy_init(elements[0], elements[1], elements[2], elements[3], elements[4])
 #print(query.pretty_print())
 
-elements = hm.birth_death()
+elements = pm.radius()
 query = init_query("Aster", "", elements)
 
-while(True):
+while True:
     name = input("Block: ")
     query.builder.name = name
     starting = datetime.now()

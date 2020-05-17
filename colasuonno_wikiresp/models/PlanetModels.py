@@ -1,9 +1,18 @@
 
 
 def radius():
-    return [
-        ["radiusLabel", "unitLabel"],
-        {"p": "P2120", "psv": "P2120"},
-        {"wikibase:quantityAmount": "?radius", "wikibase:quantityUnit": "?unit"}
-    ]
+    return {
+        "labels": ["radiusLabel", "unitLabel"],
+        "conditions":  {
+            "0": {
+                "startVar": "?id",
+                "conditions": "p:P2120/psv:P2120 [ wikibase:quantityAmount ?radius; wikibase:quantityUnit",
+                "endVar": "?unit]"
+            }
+        },
+        "optional_conditions": {},
+        "last": "",
+        "type": "DirectWikiQuery"
+    }
+
 

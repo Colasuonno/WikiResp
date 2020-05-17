@@ -29,11 +29,12 @@ class DirectWikiQuery:
         self.builder.select_labels(elements["labels"])
         self.builder.where_struct(elements["conditions"], elements["assignments"], elements["optional_conditions"],
                                   elements["optional_assignments"])
-        last = ""
-        if len(elements) > 5:
-            last = elements[3]
+        last = None
+        if "last" in elements:
+            last = elements["last"]
         return self.build(limit, last)
 
+    @DeprecationWarning
     def lazy_init(self, labels, conditions, vars_assuming, optionals_conditions, optionals_vars_assuming, limit=None):
         self.builder.select_labels(labels)
         self.builder.where_struct(conditions, vars_assuming, optionals_conditions, optionals_vars_assuming)
