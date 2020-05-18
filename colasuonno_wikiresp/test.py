@@ -3,7 +3,7 @@ from datetime import datetime
 from models import PlanetModels as pm
 from models import HumansModels as hm
 from models import GeographicModels as gm
-from queries.WikiQuery import init_query
+from queries.WikiQuery import WikiQuery
 
 
 #query = DirectWikiQuery("Aster", "Dante Alighieri")
@@ -11,8 +11,8 @@ from queries.WikiQuery import init_query
 #query.lazy_init(elements[0], elements[1], elements[2], elements[3], elements[4])
 #print(query.pretty_print())
 
-elements = pm.radius()
-query = init_query("Aster", "", elements)
+elements = hm.languages_spoken()
+query = WikiQuery(language_ind="it")
 
 while True:
     name = input("Block: ")
@@ -20,7 +20,6 @@ while True:
     starting = datetime.now()
     query.init(elements)
     print(query.pretty_print())
-    print(query.query_txt)
     end = datetime.now()
     tot = end - starting
     print({"Request elapsed time": str(tot.total_seconds()) + "s"})

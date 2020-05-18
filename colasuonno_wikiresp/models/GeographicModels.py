@@ -30,5 +30,6 @@ def citizens_count():
             }
         },
         "last": "ORDER BY DESC(?year)",
+        "limit": 50,
         "type": "DirectWikiQuery"
     }

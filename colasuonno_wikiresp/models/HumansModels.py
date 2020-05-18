@@ -1,37 +1,63 @@
 
 def birth_death():
     return {
-        "labels": ["birth", "death"],
+        "labels": ["birth", "death", "description"],
         "conditions":  {
             "0": {
                 "startVar": "?id",
-                "conditions": "p:P1082",
-                "endVar": "?prop"
+                "conditions": "wdt:P31 wd:Q5",
+                "endVar": ""
             },
             "1": {
                 "startVar": "?id",
-                "conditions": "wdt:P1082",
-                "endVar": "?citizens_count"
+                "conditions": "wdt:P569",
+                "endVar": "?birth"
+            },
+            "2": {
+                "startVar": "?id",
+                "conditions": "schema:description",
+                "endVar": "?description"
+            },
+            "3": {
+                "startVar": "",
+                "conditions": "FILTER ( lang(?description) = \"{lang_ind}\" )",
+                "endVar": ""
             }
 
         },
         "optional_conditions": {
             "0": {
-                "startVar": "?prop",
-                "conditions": "pq:P585",
-                "endVar": "?year"
+                "startVar": "?id",
+                "conditions": "wdt:P570",
+                "endVar": "?death"
             }
         },
-        "last": "ORDER BY DESC(?year)",
-        "type": "DirectWikiQuery"
+        "last": "",
+        "limit": 10
     }
 
 
 def languages_spoken():
-    return [
-        ["languages_spoken"],
-        {"P31": "Q5"}, {"P1412": "?languages_spoken"}, {}, {}
-    ]
+    return {
+        "labels": ["languages_spokenLabel"],
+        "conditions":  {
+            "0": {
+                "startVar": "?id",
+                "conditions": "wdt:P31 wd:Q5",
+                "endVar": ""
+            },
+            "1": {
+                "startVar": "?id",
+                "conditions": "wdt:P1412",
+                "endVar": "?languages_spoken"
+            },
+
+        },
+        "optional_conditions": {
+        },
+        "last": "",
+        "limit": 10
+    }
 
 
 def father_mother():

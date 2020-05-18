@@ -12,6 +12,7 @@ def radius():
         },
         "optional_conditions": {},
         "last": "",
+        "limit": 10,
         "type": "DirectWikiQuery"
     }
 
