@@ -55,5 +55,6 @@ class SPARQLBuilder:
 
     def build(self):
         q = self.qs + self.qw
+        print(q)
         return q
 

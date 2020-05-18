@@ -11,7 +11,7 @@ from queries.WikiQuery import WikiQuery
 #query.lazy_init(elements[0], elements[1], elements[2], elements[3], elements[4])
 #print(query.pretty_print())
 
-elements = hm.languages_spoken()
+elements = pm.radius()
 query = WikiQuery(language_ind="it")
 
 while True:

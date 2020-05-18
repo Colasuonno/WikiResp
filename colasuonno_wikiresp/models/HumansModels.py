@@ -1,7 +1,7 @@
 
 def birth_death():
     return {
-        "labels": ["birth", "death", "description"],
+        "labels": ["birth", "death", "age", "description"],
         "conditions":  {
             "0": {
                 "startVar": "?id",
@@ -22,6 +22,10 @@ def birth_death():
                 "startVar": "",
                 "conditions": "FILTER ( lang(?description) = \"{lang_ind}\" )",
                 "endVar": ""
+            },
+            "4": {
+                "startVar": "?id",
+                "conditions": "wdt"
             }
 
         },
@@ -33,7 +37,7 @@ def birth_death():
             }
         },
         "last": "",
-        "limit": 10
+        "limit": 1
     }
 
 

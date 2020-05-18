@@ -50,10 +50,12 @@ class WikiQuery:
 
         for bind in bindings:
             for label in self.builder.labels:
+                if a not in result:
+                    result[a] = {}
                 if label in bind:
-                    if a not in result:
-                        result[a] = {}
                     result[a][label] = bind[label]["value"]
+                    if "id" not in result[a]:
+                        result[a]["id"] = bind["idLabel"]["value"]
             a += 1
 
         return json.dumps(result)
